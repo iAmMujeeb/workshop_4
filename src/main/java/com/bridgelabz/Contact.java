@@ -1,11 +1,22 @@
 package com.bridgelabz;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Contact {
 
+    @CsvBindByName
     private String firstName;
+
+    @CsvBindByName
     private String lastName;
+
+    @CsvBindByName
     private String city;
+
+    @CsvBindByName
     private String state;
+
+    @CsvBindByName
     private int zip;
 
     public Contact(String firstName, String lastName, String city, String state, int zip) {
@@ -57,5 +68,16 @@ public class Contact {
 
     public void setZip(int zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "firstName='" + this.firstName + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", city='" + this.city + '\'' +
+                ", state='" + this.state + '\'' +
+                ", zip=" + this.zip +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
-import java.io.FileWriter;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -9,16 +10,26 @@ public class IOImpFile implements WritingService{
     final static String filePath = "D:\\Bridgelabz\\AddressBookIOWorkshop\\src\\main\\java\\com\\bridgelabz\\contacts.txt";
 
     @Override
-    public void writeToIO(List<AddressBook> addressBookList) {
+    public void writeToIO(List<AddressBook> addressBookList) throws IOException {
         StringBuffer sb = new StringBuffer();
-
         addressBookList.stream().forEach(addressBook -> {
-            String contact = addressBook.toString().concat("\n");
-            sb.append(contact);
+            String contactString = addressBook.personList.toString().concat("\n");
+            sb.append(contactString);
         });
-        FileWriter
+        Files.write(Path.of(filePath),sb.toString().getBytes());
     }
 
+    @Override
+    public void readFromIO() throws IOException {
+        Files.lines(Path.of(filePath)).forEach(addressBook->{
+            System.out.println(addressBook);
+        });
+    }
 
+    @Override
+    public long countEntries() throws IOException {
+        long count = Files.lines(Path.of(filePath)).count();
+        return count;
+    }
 
 }
