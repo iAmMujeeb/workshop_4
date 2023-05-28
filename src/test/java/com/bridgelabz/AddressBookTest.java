@@ -90,7 +90,7 @@ public class AddressBookTest {
         addressBookService.writeToIO();
         addressBookService.readFromIO();
         long actualCount = addressBookService.countEntries();
-        Assertions.assertEquals(1, actualCount);
+        Assertions.assertEquals(3, actualCount);
     }
 
 }
